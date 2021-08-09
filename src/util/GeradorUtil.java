@@ -26,6 +26,9 @@ public class GeradorUtil {
         }
         return senha;
     }
+    
+    //JUnit
+    
 
     public String gerarCpf() {
         return gerarNumero(3) + "." + gerarNumero(3) + "." + gerarNumero(3) + "-"
@@ -76,11 +79,4 @@ public class GeradorUtil {
         return sobrenomes[indice];
     }
 
-    public static void main(String[] args) {
-        GeradorUtil util = new GeradorUtil();
-
-        String nome = util.gerarNome();
-        System.out.println("Nome: " + nome);
-
-    }
 }

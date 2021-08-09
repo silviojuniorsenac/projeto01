@@ -5,7 +5,7 @@
  */
 package teste;
 
-import aula_01.Aluno;
+import entidade.Aluno;
 import javax.swing.JOptionPane;
 
 /**
