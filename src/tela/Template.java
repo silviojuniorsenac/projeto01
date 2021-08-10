@@ -5,18 +5,16 @@
  */
 package tela;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author silvio.junior
  */
-public class CadastroAluno extends javax.swing.JFrame {
+public class Template extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroAluno
      */
-    public CadastroAluno() {
+    public Template() {
         initComponents();
     }
 
@@ -33,7 +31,7 @@ public class CadastroAluno extends javax.swing.JFrame {
         titulo = new javax.swing.JLabel();
         nome = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
-        btSalvar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Cliente");
@@ -46,13 +44,8 @@ public class CadastroAluno extends javax.swing.JFrame {
         nome.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nome.setText("Nome:");
 
-        btSalvar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
-            }
-        });
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("Salvar");
 
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
@@ -65,7 +58,7 @@ public class CadastroAluno extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
@@ -77,7 +70,7 @@ public class CadastroAluno extends javax.swing.JFrame {
                     .addComponent(nome)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
 
@@ -96,25 +89,6 @@ public class CadastroAluno extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        boolean erro = carregarAluno();
-        if (!erro) {
-            //salvarNoBanco
-        }
-    }//GEN-LAST:event_btSalvarActionPerformed
-
-    private boolean carregarAluno() {
-        String nome = varNome.getText().trim();
-        boolean temErro = false;
-        if (nome.length() >= 3) {
-            //TODO jogar valor para o objeto aluno
-        } else {
-            temErro = true;
-            JOptionPane.showMessageDialog(null, "Digite um nome correto!");
-        }
-        return temErro;
-    }
-
     /**
      * @param args the command line arguments
      */
@@ -132,26 +106,27 @@ public class CadastroAluno extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Template.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroAluno().setVisible(true);
+                new Template().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btSalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel nome;
     private javax.swing.JPanel principal;
     private javax.swing.JLabel titulo;

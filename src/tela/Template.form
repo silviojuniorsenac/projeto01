@@ -46,7 +46,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="varNome" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="btSalvar" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="172" max="32767" attributes="0"/>
               </Group>
@@ -62,7 +62,7 @@
                       <Component id="varNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="177" max="32767" attributes="0"/>
-                  <Component id="btSalvar" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -89,16 +89,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="varNome">
         </Component>
-        <Component class="javax.swing.JButton" name="btSalvar">
+        <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSalvarActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
