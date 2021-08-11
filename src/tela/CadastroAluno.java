@@ -5,6 +5,7 @@
  */
 package tela;
 
+import entidade.Aluno;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +13,8 @@ import javax.swing.JOptionPane;
  * @author silvio.junior
  */
 public class CadastroAluno extends javax.swing.JFrame {
+
+    private Aluno aluno;
 
     /**
      * Creates new form CadastroAluno
@@ -34,6 +37,8 @@ public class CadastroAluno extends javax.swing.JFrame {
         nome = new javax.swing.JLabel();
         varNome = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
+        idade = new javax.swing.JLabel();
+        varIdade = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Cliente");
@@ -54,6 +59,12 @@ public class CadastroAluno extends javax.swing.JFrame {
             }
         });
 
+        idade.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        idade.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        idade.setText("Idade:");
+
+        varIdade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
         javax.swing.GroupLayout principalLayout = new javax.swing.GroupLayout(principal);
         principal.setLayout(principalLayout);
         principalLayout.setHorizontalGroup(
@@ -61,11 +72,17 @@ public class CadastroAluno extends javax.swing.JFrame {
             .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(principalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(principalLayout.createSequentialGroup()
+                        .addComponent(idade, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(172, Short.MAX_VALUE))
         );
         principalLayout.setVerticalGroup(
@@ -76,7 +93,11 @@ public class CadastroAluno extends javax.swing.JFrame {
                 .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nome)
                     .addComponent(varNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idade)
+                    .addComponent(varIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
@@ -97,20 +118,51 @@ public class CadastroAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        aluno = new Aluno();
         boolean erro = carregarAluno();
         if (!erro) {
-            //salvarNoBanco
+
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private boolean carregarAluno() {
-        String nome = varNome.getText().trim();
         boolean temErro = false;
-        if (nome.length() >= 3) {
-            //TODO jogar valor para o objeto aluno
+        String nome = varNome.getText().trim();
+        temErro = validarCampo3Valor(nome);
+        if(!temErro){
+            aluno.setNome(nome);
+        }else{
+            return true;
+        }
+        
+        return temErro;
+    }
+
+    private boolean validarIdade() {
+        boolean temErro = false;
+        String idade = varIdade.getText().trim();
+        if (idade.equals("")) {
+            temErro = true;
+            JOptionPane.showMessageDialog(null, "Digite uma idade correto!");
+        } else {
+            int valorIdade = Integer.parseInt(idade);
+            if (valorIdade <= 16 || valorIdade > 100) {
+                temErro = true;
+                JOptionPane.showMessageDialog(null, "Digite uma idade correto!");
+            } else {
+                aluno.setIdade(valorIdade);
+            }
+        }
+        return temErro;
+    }
+
+    private boolean validarCampo3Valor(String valor) {
+        boolean temErro = false;
+        if (valor.length() >= 3) {
+            aluno.setNome(valor);
         } else {
             temErro = true;
-            JOptionPane.showMessageDialog(null, "Digite um nome correto!");
+            JOptionPane.showMessageDialog(null, "Digite um valor correto!");
         }
         return temErro;
     }
@@ -152,9 +204,11 @@ public class CadastroAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSalvar;
+    private javax.swing.JLabel idade;
     private javax.swing.JLabel nome;
     private javax.swing.JPanel principal;
     private javax.swing.JLabel titulo;
+    private javax.swing.JFormattedTextField varIdade;
     private javax.swing.JTextField varNome;
     // End of variables declaration//GEN-END:variables
 }
